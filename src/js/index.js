@@ -9,13 +9,19 @@ class Rectangle {
     this._y = y;
     this._ref = this.generateHTML();
     this.style();
+    this.changecolor();
   }
   generateHTML() {
     document.body.insertAdjacentHTML(
       "afterbegin",
-      `<a class="changecolor" href="#"><div class="rectangle">klik mij</div></a>`
+      `<a href="#"><div class="rectangle">klik mij</div></a>`
     );
     return document.querySelector("div:first-child");
+  }
+  changecolor() {
+    this._ref.addEventListener("click", () => {
+      this.style();
+    });
   }
   style() {
     const styles = {
@@ -108,15 +114,3 @@ if(rechthoek.topmidden > rechthoek2.topmidden2) {
 console.log(rechthoek.left, rechthoek.top);
 console.log(rechthoek2);
 console.log(rechthoek2.left, rechthoek2.top); */
-
-document.getElementsByClassName("changecolor").onclick = function () {
-  this._ref.style.backgroundColor = randomColor();
-  console.log("klik");
-};
-
-document.querySelector("button").onclick = function () {
-  document.getElementsByClassName(
-    "changecolor"
-  ).style.backgroundColor = randomColor();
-  console.log("klik");
-};
